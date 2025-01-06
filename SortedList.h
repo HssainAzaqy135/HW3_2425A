@@ -7,11 +7,11 @@ namespace mtm {
 
     using T = int;
 //    template <typename T>
-    class SortedList {
+class SortedList {
     private:
         class Node;
         Node* head;
-        int len;
+        unsigned int len;
 
     public:
         class ConstIterator;
@@ -20,11 +20,12 @@ namespace mtm {
         SortedList& operator=(const SortedList& otherList);
         ~SortedList();
         SortedList& Insert(const T& newData);
-        int length();
+        SortedList& remove(const ConstIterator& it);
+        unsigned int length() const;
         ConstIterator begin() const;
         ConstIterator end() const;
-        void remove(const ConstIterator& It);
 
+        //helper function
         void listCopier(const SortedList& otherList);
 
         /**
@@ -58,26 +59,19 @@ namespace mtm {
 
 //    template <class T>
     class SortedList::ConstIterator {
-    private:
-        friend class SortedList;
-        const Node* curNode;
-        ConstIterator(const Node& It);
-    public:
-        ConstIterator() : curNode(nullptr) {};
-        ConstIterator(const ConstIterator& It) = default;
-        ~ConstIterator() = default;
-        ConstIterator& operator=(const ConstIterator& It) = default;
+        private:
+            friend class SortedList;
+            const Node* currNode;
+            ConstIterator(const Node* nodeToPointAt): currNode(nodeToPointAt){}
+        public:
+            ConstIterator() : currNode(nullptr) {};
+            ConstIterator(const ConstIterator& it) = default;
+            ~ConstIterator() = default;
+            ConstIterator& operator=(const ConstIterator& it) = default;
 
-        const T& operator*() const;
-        ConstIterator& operator++();
-        bool operator!=(const ConstIterator& It) const;
-
-
-
-
-
-
-
+            const T& operator*() const;
+            ConstIterator& operator++();
+            bool operator!=(const ConstIterator& it) const;
 
 
     /**
@@ -162,6 +156,38 @@ mtm::SortedList& mtm::SortedList::Insert(const T& newData) {
     }
     this->len++;
     return *this;
+}
+
+mtm::SortedList& mtm::SortedList::remove(const mtm::SortedList::ConstIterator& it) {
+    // edge cases
+    if(this->head == nullptr || it.currNode == nullptr){
+        return *this;
+    }
+    if(this->head == it.currNode){
+        this->head = head->next;
+        this->head->prev = nullptr;
+        it.currNode->next = nullptr;
+    }else if(it.currNode->next == nullptr && it.currNode->prev != nullptr){
+        it.currNode->prev->next = nullptr;
+    } else if(it.currNode->next != nullptr && it.currNode->prev != nullptr){
+        it.currNode->prev->next = it.currNode->next;
+        it.currNode->next->prev = it.currNode->prev;
+        it.currNode->next = nullptr;
+    }
+    delete it.currNode;
+    this->len--;
+    return *this;
+}
+
+unsigned int mtm::SortedList::length() const{
+    return this->len;
+}
+
+mtm::SortedList::ConstIterator mtm::SortedList::begin() const{
+    return ConstIterator(this->head);
+}
+mtm::SortedList::ConstIterator mtm::SortedList::end() const{
+
 }
 
 //--------------------- SortedList ConstIterator implementations ------------------------------
