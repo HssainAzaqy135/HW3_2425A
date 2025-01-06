@@ -15,17 +15,17 @@ namespace mtm {
 
     public:
         class ConstIterator;
+        SortedList(): head(nullptr), len(0) { }
+        SortedList(const SortedList& otherList);
+        SortedList& operator=(const SortedList& otherList);
+        ~SortedList();
+        SortedList& Insert(const T& newData);
+        int length();
         ConstIterator begin() const;
         ConstIterator end() const;
-
-        SortedList(): head(nullptr), len(0) { }
-        SortedList(const SortedList& other);
-        SortedList& operator=(const SortedList& other);
-        ~SortedList();
-        void Insert(const T& newData);
         void remove(const ConstIterator& It);
-        int length();
 
+        void listCopier(const SortedList& otherList);
 
         /**
          *
@@ -105,23 +105,90 @@ namespace mtm {
         Node* next = nullptr;
         Node* prev = nullptr;
         Node(const T& data) : data(data) {}
+        ~Node() {
+            delete this->next;
+        }
     };
 }
 
 
-
 //--------------------- SortedList  implementations ------------------------------
 
+//    template <typename T>
+mtm::SortedList::SortedList(const SortedList& otherList) {
+    this->listCopier(otherList);
+}
 
+//    template <typename T>
+mtm::SortedList& mtm::SortedList::operator=(const mtm::SortedList& otherList){
+    if (this == &otherList) {
+        return *this;
+    }
+    this->listCopier(otherList);
+    return *this;
+}
 
+mtm::SortedList::~SortedList() {
+    delete this->head;
+}
 
-
-
-
-
-
-
-
+mtm::SortedList& mtm::SortedList::Insert(const T& newData) {
+    Node* newNode = new Node(newData);
+    if (this->head == nullptr) {
+        this->head = newNode;
+        this->len++;
+        return *this;
+    } else if (newData > this->head->data) {
+        newNode->next = this->head;
+        this->head->prev = newNode;
+        this->head = newNode;
+        this->len++;
+        return *this;
+    }
+    Node* currNode = this->head;
+    Node* nextOfCurr = this->head->next;
+    while(nextOfCurr!= nullptr){
+        if(newNode->data > nextOfCurr->data){
+            break;
+        }
+        currNode = currNode->next;
+        nextOfCurr = nextOfCurr->next;
+    }
+    currNode->next = newNode;
+    newNode->prev = currNode;
+    if(nextOfCurr != nullptr){
+        newNode->next = nextOfCurr;         //sorting next params
+        nextOfCurr->prev= newNode;        //sorting prev params
+    }
+    this->len++;
+    return *this;
+}
 
 //--------------------- SortedList ConstIterator implementations ------------------------------
 
+
+
+
+//--------------------- SortedList helper functions implementations ------------------------------
+
+
+void mtm::SortedList::listCopier(const mtm::SortedList &otherList) {
+    if (otherList.head == nullptr) {
+        this->head = nullptr;
+        this->len = 0;
+        return;
+    }
+    mtm::SortedList::Node* newHead = new mtm::SortedList::Node(otherList.head->data);
+    mtm::SortedList::Node* curNode_this = newHead;
+    mtm::SortedList::Node* curNode_other = otherList.head;
+    while (curNode_other->next != nullptr) {
+        mtm::SortedList::Node* newNode = new mtm::SortedList::Node(curNode_other->next->data);
+        curNode_this->next = newNode;
+        newNode->prev = curNode_this;
+        curNode_this = curNode_this->next;
+        curNode_other = curNode_other->next;
+    }
+    this->len = otherList.len;
+
+    // ADD TRY CATCH EXCEPTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+}
