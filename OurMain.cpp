@@ -3,6 +3,7 @@
 //
 #include <stdio.h>
 #include "SortedList.h"
+using namespace mtm;
 
 int main() {
     mtm::SortedList l1;
@@ -10,8 +11,21 @@ int main() {
     l1.Insert(1);
     l1.Insert(2).Insert(1);
 
-    // l1.remove(mtm::SortedList::ConstIterator());
     mtm::SortedList l2(l1);
-    // should check removal
+    //Before removal
+
+    for (SortedList::ConstIterator it = l1.begin(); it != l1.end(); ++it) {
+        std::cout << *it << std::endl;
+    }
+
+    SortedList::ConstIterator it = l1.begin();
+    ++it;
+    ++it;
+    l1.remove(it);
+    for (SortedList::ConstIterator it = l1.begin(); it != l1.end(); ++it) {
+        std::cout << *it << std::endl;
+    }
+
+
     return 0;
 }

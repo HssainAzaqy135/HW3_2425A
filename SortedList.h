@@ -221,26 +221,29 @@ bool SortedList::ConstIterator::operator!=(const SortedList::ConstIterator& it) 
 
 //--------------------- SortedList helper functions implementations ------------------------------
 
-
 void SortedList::listCopier(const SortedList &otherList) {
     if (otherList.head == nullptr) {
         this->head = nullptr;
         this->len = 0;
         return;
     }
-    SortedList::Node* newHead = new SortedList::Node(otherList.head->data);
-    SortedList::Node* curNode_this = newHead;
-    SortedList::Node* curNode_other = otherList.head;
-    while (curNode_other->next != nullptr) {
-        SortedList::Node* newNode = new SortedList::Node(curNode_other->next->data);
-        curNode_this->next = newNode;
-        newNode->prev = curNode_this;
-        curNode_this = curNode_this->next;
-        curNode_other = curNode_other->next;
+    try {
+        SortedList::Node* newHead = new SortedList::Node(otherList.head->data);
+        SortedList::Node* curNode_this = newHead;
+        SortedList::Node* curNode_other = otherList.head;
+        while (curNode_other->next != nullptr) {
+            SortedList::Node* newNode = new SortedList::Node(curNode_other->next->data);
+            curNode_this->next = newNode;
+            newNode->prev = curNode_this;
+            curNode_this = curNode_this->next;
+            curNode_other = curNode_other->next;
+        }
+        this->len = otherList.len;
+        Node *prevHead = this->head;
+        this->head = newHead;
+        delete prevHead;
+    } catch (...) {
+        delete this->head;
+        throw;
     }
-    this->len = otherList.len;
-    Node *prevHead = this->head;
-    this->head = newHead;
-    delete prevHead;
-    // ADD TRY CATCH EXCEPTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
