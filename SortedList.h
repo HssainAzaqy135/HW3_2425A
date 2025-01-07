@@ -25,6 +25,12 @@ class SortedList {
         ConstIterator begin() const;
         ConstIterator end() const;
 
+        // Esoteric stuff
+    // template<typename Condition>
+    // SortedList filter(Condition filterFunction) const;
+    // template <typename Transform>
+    // SortedList apply(Transform transformFunction) const;
+
         //helper function
         void listCopier(const SortedList& otherList);
 
@@ -190,6 +196,8 @@ mtm::SortedList::ConstIterator mtm::SortedList::end() const{
     return ConstIterator(nullptr);
 }
 
+
+
 //--------------------- SortedList ConstIterator implementations ------------------------------
 
 
@@ -215,6 +223,8 @@ void mtm::SortedList::listCopier(const mtm::SortedList &otherList) {
         curNode_other = curNode_other->next;
     }
     this->len = otherList.len;
-
+    Node *prevHead = this->head;
+    this->head = newHead;
+    delete prevHead;
     // ADD TRY CATCH EXCEPTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
