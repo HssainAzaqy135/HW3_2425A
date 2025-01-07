@@ -11,7 +11,7 @@ class SortedList {
     private:
         class Node;
         Node* head;
-        unsigned int len;
+        int len;
 
     public:
         class ConstIterator;
@@ -21,7 +21,7 @@ class SortedList {
         ~SortedList();
         SortedList& insert(const T& newData);
         SortedList& remove(const ConstIterator& it);
-        unsigned int length() const;
+        int length() const;
         ConstIterator begin() const;
         ConstIterator end() const;
 
@@ -185,7 +185,7 @@ SortedList<T>& SortedList<T>::remove(const SortedList<T>::ConstIterator& it) {
     return *this;
 }
 template <typename T>
-unsigned int SortedList<T>::length() const{
+int SortedList<T>::length() const{
     return this->len;
 }
 template <typename T>
@@ -199,7 +199,7 @@ typename SortedList<T>::ConstIterator SortedList<T>::end() const{
 // -------------------- SortedList Esoteric functions -----------------------------------------
 template<typename T>
 template<typename Cond>
-typename SortedList<T> SortedList<T>::filter(const Cond& filterFunc) const {
+SortedList<T> SortedList<T>::filter(const Cond& filterFunc) const {
     SortedList<T> retList;
     for(SortedList::ConstIterator it = this->begin(); it != this->end(); ++it) {
         if(filterFunc(*it) == true) {
@@ -211,7 +211,7 @@ typename SortedList<T> SortedList<T>::filter(const Cond& filterFunc) const {
 
 template<typename T>
 template <typename Transformer>
-typename SortedList<T> SortedList<T>::apply(const Transformer& transformer) const {
+SortedList<T> SortedList<T>::apply(const Transformer& transformer) const {
     SortedList<T> retList;
     for(SortedList::ConstIterator it = this->begin(); it != this->end(); ++it) {
         T newElement = transformer(*it);
