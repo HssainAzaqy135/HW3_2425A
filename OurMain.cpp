@@ -9,8 +9,8 @@ using namespace mtm;
 int main() {
     mtm::SortedList<T> l1;
 
-    l1.Insert(1.6);
-    l1.Insert(2.1).Insert(1.1);
+    l1.insert(1.6);
+    l1.insert(2.1).insert(1.1);
 
     mtm::SortedList l2(l1);
     //Before removal

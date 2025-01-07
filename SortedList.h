@@ -19,7 +19,7 @@ class SortedList {
         SortedList(const SortedList& otherList);
         SortedList& operator=(const SortedList& otherList);
         ~SortedList();
-        SortedList& Insert(const T& newData);
+        SortedList& insert(const T& newData);
         SortedList& remove(const ConstIterator& it);
         unsigned int length() const;
         ConstIterator begin() const;
@@ -132,7 +132,7 @@ SortedList<T>::~SortedList() {
     delete this->head;
 }
 template <typename T>
-SortedList<T>& SortedList<T>::Insert(const T& newData) {
+SortedList<T>& SortedList<T>::insert(const T& newData) {
     Node* newNode = new Node(newData);
     if (this->head == nullptr) {
         this->head = newNode;
@@ -203,7 +203,7 @@ typename SortedList<T> SortedList<T>::filter(const Cond& filterFunc) const {
     SortedList<T> retList;
     for(SortedList::ConstIterator it = this->begin(); it != this->end(); ++it) {
         if(filterFunc(*it) == true) {
-            retList.Insert(*it);
+            retList.insert(*it);
         }
     }
     return retList;
@@ -215,7 +215,7 @@ typename SortedList<T> SortedList<T>::apply(const Transformer& transformer) cons
     SortedList<T> retList;
     for(SortedList::ConstIterator it = this->begin(); it != this->end(); ++it) {
         T newElement = transformer(*it);
-        retList.Insert(newElement);
+        retList.insert(newElement);
     }
     return retList;
 }
