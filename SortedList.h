@@ -5,8 +5,8 @@
 
 namespace mtm {
 
-    using T = int;
-//    template <typename T>
+    // using T = int;
+template <typename T>
 class SortedList {
     private:
         class Node;
@@ -63,8 +63,8 @@ class SortedList {
     };
 
 
-//    template <class T>
-    class SortedList::ConstIterator {
+    template <class T>
+    class SortedList<T>::ConstIterator {
         private:
             friend class SortedList;
             Node* currNode; // Maybe no need for const here
@@ -98,8 +98,8 @@ class SortedList {
      */
     };
 
-//template <typename T>
-    class SortedList::Node {
+template <typename T>
+    class SortedList<T>::Node {
     public:
         T data;
         Node* next = nullptr;
@@ -114,25 +114,25 @@ class SortedList {
 using namespace mtm;
 //--------------------- SortedList  implementations ------------------------------
 
-//    template <typename T>
-SortedList::SortedList(const SortedList& otherList) {
+template <typename T>
+SortedList<T>::SortedList(const SortedList& otherList): head(nullptr), len(0) {
     this->listCopier(otherList);
 }
 
-//    template <typename T>
-SortedList& SortedList::operator=(const SortedList& otherList){
+template <typename T>
+SortedList<T>& SortedList<T>::operator=(const SortedList& otherList){
     if (this == &otherList) {
         return *this;
     }
     this->listCopier(otherList);
     return *this;
 }
-
-SortedList::~SortedList() {
+template <typename T>
+SortedList<T>::~SortedList() {
     delete this->head;
 }
-
-SortedList& SortedList::Insert(const T& newData) {
+template <typename T>
+SortedList<T>& SortedList<T>::Insert(const T& newData) {
     Node* newNode = new Node(newData);
     if (this->head == nullptr) {
         this->head = newNode;
@@ -163,8 +163,8 @@ SortedList& SortedList::Insert(const T& newData) {
     this->len++;
     return *this;
 }
-
-SortedList& SortedList::remove(const SortedList::ConstIterator& it) {
+template <typename T>
+SortedList<T>& SortedList<T>::remove(const SortedList<T>::ConstIterator& it) {
     // edge cases
     if(this->head == nullptr || it.currNode == nullptr){
         return *this;
@@ -184,64 +184,65 @@ SortedList& SortedList::remove(const SortedList::ConstIterator& it) {
     this->len--;
     return *this;
 }
-
-unsigned int SortedList::length() const{
+template <typename T>
+unsigned int SortedList<T>::length() const{
     return this->len;
 }
-
-SortedList::ConstIterator SortedList::begin() const{
+template <typename T>
+typename SortedList<T>::ConstIterator SortedList<T>::begin() const{
     return ConstIterator(this->head);
 }
-SortedList::ConstIterator SortedList::end() const{
+template <typename T>
+typename SortedList<T>::ConstIterator SortedList<T>::end() const{
     return ConstIterator(nullptr);
 }
 
 
 
 //--------------------- SortedList ConstIterator implementations ------------------------------
-
-const T& SortedList::ConstIterator::operator*() const {
+template <typename T>
+const T& SortedList<T>::ConstIterator::operator*() const {
     if (this->currNode == nullptr) {
         throw std::out_of_range("Dereferencing nullptr");
     }
     return this->currNode->data;
 }
-
-SortedList::ConstIterator& SortedList::ConstIterator::operator++() {
+template <typename T>
+typename SortedList<T>::ConstIterator& SortedList<T>::ConstIterator::operator++() {
     if (this->currNode == nullptr) {
         throw std::out_of_range("Out of range");
     }
     this->currNode = this->currNode->next;
     return *this;
 }
-
-bool SortedList::ConstIterator::operator!=(const SortedList::ConstIterator& it) const {
+template <typename T>
+bool SortedList<T>::ConstIterator::operator!=(const SortedList<T>::ConstIterator& it) const {
     return this->currNode != it.currNode;
 }
 
 //--------------------- SortedList helper functions implementations ------------------------------
-
-void SortedList::listCopier(const SortedList &otherList) {
+template <typename T>
+void SortedList<T>::listCopier(const SortedList &otherList) {
     if (otherList.head == nullptr) {
         this->head = nullptr;
         this->len = 0;
         return;
     }
     try {
-        SortedList::Node* newHead = new SortedList::Node(otherList.head->data);
-        SortedList::Node* curNode_this = newHead;
-        SortedList::Node* curNode_other = otherList.head;
+        SortedList<T>::Node* newHead = new SortedList<T>::Node(otherList.head->data);
+        SortedList<T>::Node* curNode_this = newHead;
+        SortedList<T>::Node* curNode_other = otherList.head;
         while (curNode_other->next != nullptr) {
-            SortedList::Node* newNode = new SortedList::Node(curNode_other->next->data);
+            SortedList<T>::Node* newNode = new SortedList<T>::Node(curNode_other->next->data);
             curNode_this->next = newNode;
             newNode->prev = curNode_this;
             curNode_this = curNode_this->next;
             curNode_other = curNode_other->next;
         }
-        this->len = otherList.len;
         Node *prevHead = this->head;
         this->head = newHead;
         delete prevHead;
+        this->len = otherList.len;
     } catch (...) {
         delete this->head;
         throw;
