@@ -26,10 +26,10 @@ class SortedList {
         ConstIterator end() const;
 
         // Esoteric stuff
-    // template<typename Condition>
-    // SortedList filter(Condition filterFunction) const;
-    // template <typename Transform>
-    // SortedList apply(Transform transformFunction) const;
+        template<typename Cond>
+        SortedList filter(const Cond& filterFunc) const;
+        template <typename Transformer>
+        SortedList apply(const Transformer& transformer) const;
 
         //helper function
         void listCopier(const SortedList& otherList);
@@ -196,7 +196,29 @@ template <typename T>
 typename SortedList<T>::ConstIterator SortedList<T>::end() const{
     return ConstIterator(nullptr);
 }
+// -------------------- SortedList Esoteric functions -----------------------------------------
+template<typename T>
+template<typename Cond>
+typename SortedList<T> SortedList<T>::filter(const Cond& filterFunc) const {
+    SortedList<T> retList;
+    for(SortedList::ConstIterator it = this->begin(); it != this->end(); ++it) {
+        if(filterFunc(*it) == true) {
+            retList.Insert(*it);
+        }
+    }
+    return retList;
+}
 
+template<typename T>
+template <typename Transformer>
+typename SortedList<T> SortedList<T>::apply(const Transformer& transformer) const {
+    SortedList<T> retList;
+    for(SortedList::ConstIterator it = this->begin(); it != this->end(); ++it) {
+        T newElement = transformer(*it);
+        retList.Insert(newElement);
+    }
+    return retList;
+}
 
 
 //--------------------- SortedList ConstIterator implementations ------------------------------
