@@ -12,6 +12,6 @@ int main() {
 
     // l1.remove(mtm::SortedList::ConstIterator());
     mtm::SortedList l2(l1);
-
+    // should check removal
     return 0;
 }

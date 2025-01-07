@@ -70,7 +70,7 @@ class SortedList {
             Node* currNode; // Maybe no need for const here
             ConstIterator(Node* nodeToPointAt): currNode(nodeToPointAt){}
         public:
-            ConstIterator() : currNode(nullptr) {};
+            ConstIterator() : currNode(nullptr) {}
             ConstIterator(const ConstIterator& it) = default;
             ~ConstIterator() = default;
             ConstIterator& operator=(const ConstIterator& it) = default;
@@ -111,16 +111,16 @@ class SortedList {
     };
 }
 
-
+using namespace mtm;
 //--------------------- SortedList  implementations ------------------------------
 
 //    template <typename T>
-mtm::SortedList::SortedList(const SortedList& otherList) {
+SortedList::SortedList(const SortedList& otherList) {
     this->listCopier(otherList);
 }
 
 //    template <typename T>
-mtm::SortedList& mtm::SortedList::operator=(const mtm::SortedList& otherList){
+SortedList& SortedList::operator=(const SortedList& otherList){
     if (this == &otherList) {
         return *this;
     }
@@ -128,11 +128,11 @@ mtm::SortedList& mtm::SortedList::operator=(const mtm::SortedList& otherList){
     return *this;
 }
 
-mtm::SortedList::~SortedList() {
+SortedList::~SortedList() {
     delete this->head;
 }
 
-mtm::SortedList& mtm::SortedList::Insert(const T& newData) {
+SortedList& SortedList::Insert(const T& newData) {
     Node* newNode = new Node(newData);
     if (this->head == nullptr) {
         this->head = newNode;
@@ -164,7 +164,7 @@ mtm::SortedList& mtm::SortedList::Insert(const T& newData) {
     return *this;
 }
 
-mtm::SortedList& mtm::SortedList::remove(const mtm::SortedList::ConstIterator& it) {
+SortedList& SortedList::remove(const SortedList::ConstIterator& it) {
     // edge cases
     if(this->head == nullptr || it.currNode == nullptr){
         return *this;
@@ -185,14 +185,14 @@ mtm::SortedList& mtm::SortedList::remove(const mtm::SortedList::ConstIterator& i
     return *this;
 }
 
-unsigned int mtm::SortedList::length() const{
+unsigned int SortedList::length() const{
     return this->len;
 }
 
-mtm::SortedList::ConstIterator mtm::SortedList::begin() const{
+SortedList::ConstIterator SortedList::begin() const{
     return ConstIterator(this->head);
 }
-mtm::SortedList::ConstIterator mtm::SortedList::end() const{
+SortedList::ConstIterator SortedList::end() const{
     return ConstIterator(nullptr);
 }
 
@@ -200,23 +200,39 @@ mtm::SortedList::ConstIterator mtm::SortedList::end() const{
 
 //--------------------- SortedList ConstIterator implementations ------------------------------
 
+const T& SortedList::ConstIterator::operator*() const {
+    if (this->currNode == nullptr) {
+        throw std::out_of_range("Dereferencing nullptr");
+    }
+    return this->currNode->data;
+}
 
+SortedList::ConstIterator& SortedList::ConstIterator::operator++() {
+    if (this->currNode == nullptr) {
+        throw std::out_of_range("Out of range");
+    }
+    this->currNode = this->currNode->next;
+    return *this;
+}
 
+bool SortedList::ConstIterator::operator!=(const SortedList::ConstIterator& it) const {
+    return this->currNode != it.currNode;
+}
 
 //--------------------- SortedList helper functions implementations ------------------------------
 
 
-void mtm::SortedList::listCopier(const mtm::SortedList &otherList) {
+void SortedList::listCopier(const SortedList &otherList) {
     if (otherList.head == nullptr) {
         this->head = nullptr;
         this->len = 0;
         return;
     }
-    mtm::SortedList::Node* newHead = new mtm::SortedList::Node(otherList.head->data);
-    mtm::SortedList::Node* curNode_this = newHead;
-    mtm::SortedList::Node* curNode_other = otherList.head;
+    SortedList::Node* newHead = new SortedList::Node(otherList.head->data);
+    SortedList::Node* curNode_this = newHead;
+    SortedList::Node* curNode_other = otherList.head;
     while (curNode_other->next != nullptr) {
-        mtm::SortedList::Node* newNode = new mtm::SortedList::Node(curNode_other->next->data);
+        SortedList::Node* newNode = new SortedList::Node(curNode_other->next->data);
         curNode_this->next = newNode;
         newNode->prev = curNode_this;
         curNode_this = curNode_this->next;
