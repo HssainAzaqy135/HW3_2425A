@@ -61,8 +61,8 @@ class SortedList {
     class SortedList::ConstIterator {
         private:
             friend class SortedList;
-            const Node* currNode;
-            ConstIterator(const Node* nodeToPointAt): currNode(nodeToPointAt){}
+            Node* currNode; // Maybe no need for const here
+            ConstIterator(Node* nodeToPointAt): currNode(nodeToPointAt){}
         public:
             ConstIterator() : currNode(nullptr) {};
             ConstIterator(const ConstIterator& it) = default;
@@ -187,7 +187,7 @@ mtm::SortedList::ConstIterator mtm::SortedList::begin() const{
     return ConstIterator(this->head);
 }
 mtm::SortedList::ConstIterator mtm::SortedList::end() const{
-
+    return ConstIterator(nullptr);
 }
 
 //--------------------- SortedList ConstIterator implementations ------------------------------
