@@ -63,6 +63,7 @@ class SortedList {
     };
 
 
+
     template <class T>
     class SortedList<T>::ConstIterator {
         private:
@@ -163,6 +164,7 @@ SortedList<T>& SortedList<T>::insert(const T& newData) {
     this->len++;
     return *this;
 }
+
 template <typename T>
 SortedList<T>& SortedList<T>::remove(const SortedList<T>::ConstIterator& it) {
     // edge cases
@@ -184,6 +186,7 @@ SortedList<T>& SortedList<T>::remove(const SortedList<T>::ConstIterator& it) {
     this->len--;
     return *this;
 }
+
 template <typename T>
 int SortedList<T>::length() const{
     return this->len;

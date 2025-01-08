@@ -16,6 +16,19 @@ private:
     Person people[MAX_PERSONS]={};
     int numOfPeople = 0;
     int newTaskId = 0;
+
+    class isFromType {
+        TaskType neededType;
+    public:
+        isFromType(TaskType neededType) : neededType(neededType) {};
+        isFromType(const TaskManager::isFromType& other) = default;
+        bool operator()(const Task& taskToCheck) const {
+            return neededType == taskToCheck.getType();
+        }
+    };
+
+    SortedList<Task> allManagerTasksSorted() const;
+
     // Note - Additional private fields and methods can be added if needed.
 
 public:

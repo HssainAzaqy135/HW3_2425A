@@ -1,5 +1,8 @@
 #include "TaskManager.h"
 
+using std::cout;
+using std::endl;
+
 void TaskManager::assignTask(const string &personName, const Task &task) {
     for (int i = 0; i < numOfPeople; ++i) {
         if (people[i].getName() == personName) {
@@ -49,3 +52,38 @@ void TaskManager::bumpPriorityByType(TaskType type, int priority) {
     }
 }
 
+void TaskManager::printAllEmployees() const {
+    for (const Person& currPerson : people) {
+        cout << currPerson << endl;
+    }
+}
+
+void TaskManager::printTasksByType(TaskType type) const {
+    SortedList<Task> listOfAllTasks = this->allManagerTasksSorted();
+    isFromType typeFilter = isFromType(type);
+    SortedList<Task> filteredTasks = listOfAllTasks.filter(typeFilter);
+    TaskManager tempManager;
+    for (const Task& currTask : filteredTasks) {
+        tempManager.assignTask("temp person", currTask);
+    }
+    tempManager.printAllTasks();
+}
+
+void TaskManager::printAllTasks() const {
+    SortedList<Task> listOfAllTasks = this->allManagerTasksSorted();
+    for (const Task& currTask : listOfAllTasks) {
+        cout << currTask << endl;
+    }
+}
+
+//--------------- Helper Functions -----------------------------
+
+SortedList<Task> TaskManager::allManagerTasksSorted() const{
+    SortedList<Task> listOfAllTasks;
+    for (const Person& currPerson : people) {
+        for (const Task& currTask : currPerson.getTasks()) {
+            listOfAllTasks.insert(currTask);
+        }
+    }
+    return listOfAllTasks;
+}
