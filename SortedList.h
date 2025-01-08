@@ -173,7 +173,9 @@ SortedList<T>& SortedList<T>::remove(const SortedList<T>::ConstIterator& it) {
     }
     if(this->head == it.currNode){
         this->head = head->next;
-        this->head->prev = nullptr;
+        if(this->len > 1) {
+            this->head->prev = nullptr;
+        }
         it.currNode->next = nullptr;
     }else if(it.currNode->next == nullptr && it.currNode->prev != nullptr){
         it.currNode->prev->next = nullptr;

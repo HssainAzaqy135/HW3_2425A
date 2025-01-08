@@ -4,17 +4,18 @@ using std::cout;
 using std::endl;
 
 void TaskManager::assignTask(const string &personName, const Task &task) {
+    Task toAdd = task;
+    toAdd.setId(newTaskId);
+    newTaskId++;
     for (int i = 0; i < numOfPeople; ++i) {
         if (people[i].getName() == personName) {
-            Task toAdd = task;
-            toAdd.setId(newTaskId);
-            newTaskId++;
             people[i].assignTask(toAdd);
             return;
         }
     }
     if (numOfPeople != MAX_PERSONS) {
         Person personToAdd(personName);
+        personToAdd.assignTask(toAdd);
         numOfPeople++;
         people[numOfPeople - 1] = personToAdd;
     } else {
@@ -53,8 +54,8 @@ void TaskManager::bumpPriorityByType(TaskType type, int priority) {
 }
 
 void TaskManager::printAllEmployees() const {
-    for (const Person& currPerson : people) {
-        cout << currPerson << endl;
+    for (int i = 0; i < numOfPeople; ++i) {
+        cout << this->people[i] << endl;
     }
 }
 

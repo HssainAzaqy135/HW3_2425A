@@ -10,7 +10,7 @@ add_executable(HW3_2425A
         Task.h
         Task.cpp
         TaskManager.h
-        Main.cpp
+        main.cpp
         TaskManager.cpp
 )
 # Tests compilation files
