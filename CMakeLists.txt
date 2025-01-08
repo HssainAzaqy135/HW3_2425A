@@ -10,8 +10,8 @@ add_executable(HW3_2425A
         Task.h
         Task.cpp
         TaskManager.h
-        main.cpp
         TaskManager.cpp
+        TechnionMatam/HW3/tests/tests.cpp
 )
 # Tests compilation files
 #SortedList.h

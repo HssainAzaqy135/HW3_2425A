@@ -255,8 +255,9 @@ void SortedList<T>::listCopier(const SortedList &otherList) {
         this->len = 0;
         return;
     }
+    SortedList<T>::Node* newHead = nullptr;// pre declaration to nullptr
     try {
-        SortedList<T>::Node* newHead = new SortedList<T>::Node(otherList.head->data);
+        newHead = new SortedList<T>::Node(otherList.head->data);
         SortedList<T>::Node* curNode_this = newHead;
         SortedList<T>::Node* curNode_other = otherList.head;
         while (curNode_other->next != nullptr) {
@@ -271,7 +272,7 @@ void SortedList<T>::listCopier(const SortedList &otherList) {
         delete prevHead;
         this->len = otherList.len;
     } catch (...) {
-        delete this->head;
+        delete newHead;
         throw;
     }
 }
