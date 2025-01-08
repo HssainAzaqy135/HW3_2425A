@@ -39,10 +39,11 @@ void TaskManager::bumpPriorityByType(TaskType type, int priority) {
     for (int i = 0; i < numOfPeople; ++i) {
         SortedList<Task> currList = people[i].getTasks();
         SortedList<Task> newList = currList.apply([&priority, &type](const Task& task){
-            if(type == task.getType()){
+            if (type == task.getType()){
                 string prevDescription = task.getDescription();
                 int updatedPriority = task.getPriority()+priority;
                 Task updatedTask = Task(updatedPriority, type,prevDescription);
+                updatedTask.setId(task.getId());
                 return updatedTask;
             } else {
                 return Task(task);
@@ -61,13 +62,10 @@ void TaskManager::printAllEmployees() const {
 
 void TaskManager::printTasksByType(TaskType type) const {
     SortedList<Task> listOfAllTasks = this->allManagerTasksSorted();
-    isFromType typeFilter = isFromType(type);
-    SortedList<Task> filteredTasks = listOfAllTasks.filter(typeFilter);
-    TaskManager tempManager;
+    SortedList<Task> filteredTasks = listOfAllTasks.filter(isFromType(type));
     for (const Task& currTask : filteredTasks) {
-        tempManager.assignTask("temp person", currTask);
+        cout << currTask << endl;
     }
-    tempManager.printAllTasks();
 }
 
 void TaskManager::printAllTasks() const {

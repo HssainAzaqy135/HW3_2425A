@@ -22,8 +22,8 @@ Task ID: 3, Priority: 4, Type: Documentation, Description: Write docs for featur
 Task ID: 1, Priority: 2, Type: Development, Description: Implement feature X
 Task ID: 0, Priority: 1, Type: Meeting, Description: Discuss project goals
 
-Task ID: 0, Priority: 6, Type: Documentation, Description: Write docs for feature X
+Task ID: 3, Priority: 6, Type: Documentation, Description: Write docs for feature X
 
-Task ID: 0, Priority: 5, Type: Research, Description: Explore new tech
+Task ID: 4, Priority: 5, Type: Research, Description: Explore new tech
 
 [OK]
