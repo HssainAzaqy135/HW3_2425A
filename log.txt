@@ -1,0 +1,258 @@
+* commit 08f371574de07310c10a1f1a275c0212dc7e3e8c
+| Author: HssainAzaqy135 <kinghssain135@gmail.com>
+| Date:   Thu Jan 9 13:49:56 2025 +0200
+| 
+|     Final submission
+| 
+|  dry.docx | Bin 0 -> 69978 bytes
+|  dry.pdf  | Bin 0 -> 125054 bytes
+|  2 files changed, 0 insertions(+), 0 deletions(-)
+| 
+* commit f4709e1844af5d0935def1fc0b42474f905c8cb5
+| Author: HssainAzaqy135 <kinghssain135@gmail.com>
+| Date:   Wed Jan 8 22:01:31 2025 +0200
+| 
+|     pass all tests
+|     
+|     Yipppiiiieeeee
+| 
+|  .gitmodules        |   6 +
+|  CMakeLists.txt     |   2 +-
+|  MatamGenericTester |   1 +
+|  SortedList.h       |   5 +-
+|  TaskManager        | Bin 75640 -> 75640 bytes
+|  TaskManagerTest    | Bin 0 -> 356736 bytes
+|  TechnionMatam      |   1 +
+|  runTests.sh        |   7 +-
+|  test_results.html  | 410 +++++++++++++++++++++++++++++++++++++++++++++++++++
+|  valgrind1.log      |  15 ++
+|  valgrind2.log      |  15 ++
+|  valgrind3.log      |  15 ++
+|  valgrind4.log      |  15 ++
+|  valgrind5.log      |  15 ++
+|  valgrind6.log      |  15 ++
+|  15 files changed, 516 insertions(+), 6 deletions(-)
+| 
+* commit 55cf0f834ae3ae77f2338ecf6ba47e4efc16906a
+| Author: minmaxmarty <aregmkhitaryan@gmail.com>
+| Date:   Wed Jan 8 19:37:36 2025 +0200
+| 
+|     fix bugs to pass ALL tests
+| 
+|  TaskManager     | Bin 75640 -> 75640 bytes
+|  TaskManager.cpp |  10 ++++------
+|  test3.out       |   4 ++--
+|  test6.out       |  18 +++++++++---------
+|  4 files changed, 15 insertions(+), 17 deletions(-)
+| 
+* commit b675992c3042a633771a201811873552be968450
+| Author: HssainAzaqy135 <kinghssain135@gmail.com>
+| Date:   Wed Jan 8 18:15:32 2025 +0200
+| 
+|     Need to fix printByType of manager
+| 
+|  CMakeLists.txt  |   2 +-
+|  OurMain.cpp     |  60 +++++++++++++++++++++++++++---------------------------
+|  SortedList.h    |   4 +++-
+|  TaskManager     | Bin 0 -> 75640 bytes
+|  TaskManager.cpp |  11 +++++-----
+|  runTests.sh     |  22 ++++++++++++++++++++
+|  test1.out       |   2 ++
+|  test2.out       |   2 ++
+|  test3.out       |  29 ++++++++++++++++++++++++++
+|  test4.out       |   2 ++
+|  test5.out       |   2 ++
+|  test6.out       |  14 +++++++++++++
+|  12 files changed, 113 insertions(+), 37 deletions(-)
+| 
+* commit 0743a83add36a1ddda5b6d76cc99ad271db485dd
+| Author: minmaxmarty <aregmkhitaryan@gmail.com>
+| Date:   Wed Jan 8 17:16:58 2025 +0200
+| 
+|     finished code need to test
+| 
+|  SortedList.h    |  3 +++
+|  TaskManager.cpp | 38 ++++++++++++++++++++++++++++++++++++++
+|  TaskManager.h   | 13 +++++++++++++
+|  3 files changed, 54 insertions(+)
+| 
+* commit ff671d4f0ec01e18454688e5455655cb8c58b705
+| Author: minmaxmarty <aregmkhitaryan@gmail.com>
+| Date:   Tue Jan 7 21:23:13 2025 +0200
+| 
+|     add functions like bum, complete and such
+| 
+|  CMakeLists.txt  |  8 +++++++-
+|  SortedList.h    | 10 +++++-----
+|  TaskManager.cpp | 51 +++++++++++++++++++++++++++++++++++++++++++++++++++
+|  TaskManager.h   |  7 +++++--
+|  4 files changed, 68 insertions(+), 8 deletions(-)
+| 
+* commit 201811fcae4d493c0465afb415490f996c55da61
+| Author: HssainAzaqy135 <kinghssain135@gmail.com>
+| Date:   Tue Jan 7 19:34:05 2025 +0200
+| 
+|     insert instead of Insert
+| 
+|  OurMain.cpp  | 4 ++--
+|  SortedList.h | 8 ++++----
+|  2 files changed, 6 insertions(+), 6 deletions(-)
+| 
+* commit e415862b8e52c242b436c3a41855258fb7222ef5
+| Author: HssainAzaqy135 <kinghssain135@gmail.com>
+| Date:   Tue Jan 7 18:54:48 2025 +0200
+| 
+|     Finish SortedList code
+| 
+|  SortedList.h | 30 ++++++++++++++++++++++++++----
+|  1 file changed, 26 insertions(+), 4 deletions(-)
+| 
+* commit 36468907483390d36a01c3ba5537ec73572e7d7a
+| Author: HssainAzaqy135 <kinghssain135@gmail.com>
+| Date:   Tue Jan 7 18:28:17 2025 +0200
+| 
+|     All code up to aplly and filter in SortedList done, now in template form
+| 
+|  OurMain.cpp  | 15 +++++++------
+|  SortedList.h | 69 +++++++++++++++++++++++++++++-----------------------------
+|  2 files changed, 43 insertions(+), 41 deletions(-)
+| 
+* commit e49363057ace52a39c8932f28a9307fefd6e01cf
+| Author: HssainAzaqy135 <kinghssain135@gmail.com>
+| Date:   Tue Jan 7 17:56:02 2025 +0200
+| 
+|     SortedList code done with NO TEMPLATE
+| 
+|  OurMain.cpp  | 18 ++++++++++++++++--
+|  SortedList.h | 33 ++++++++++++++++++---------------
+|  2 files changed, 34 insertions(+), 17 deletions(-)
+| 
+* commit 1030093d9154686e5516447a996898d102a89caa
+| Author: HssainAzaqy135 <kinghssain135@gmail.com>
+| Date:   Tue Jan 7 17:13:42 2025 +0200
+| 
+|     Implement ConstIterator class methods
+| 
+|  OurMain.cpp  |  2 +-
+|  SortedList.h | 46 +++++++++++++++++++++++++++++++---------------
+|  2 files changed, 32 insertions(+), 16 deletions(-)
+| 
+* commit 394b109e35a562c29190223c38c78b126aabc880
+| Author: HssainAzaqy135 <kinghssain135@gmail.com>
+| Date:   Tue Jan 7 13:44:37 2025 +0200
+| 
+|     Update the newHead in SortedList copy constructor, forgot before
+|     
+|     Added OurMain for testing
+| 
+|  CMakeLists.txt | 17 ++++++++++-------
+|  OurMain.cpp    | 17 +++++++++++++++++
+|  SortedList.h   | 12 +++++++++++-
+|  3 files changed, 38 insertions(+), 8 deletions(-)
+| 
+* commit f7643e02446af0b14d98468bafc692e36699f322
+| Author: HssainAzaqy135 <kinghssain135@gmail.com>
+| Date:   Tue Jan 7 13:23:52 2025 +0200
+| 
+|     update CmakeList,  removed const on the Node* in const iterator, finished begin and end
+| 
+|  CMakeLists.txt | 7 ++++++-
+|  SortedList.h   | 6 +++---
+|  2 files changed, 9 insertions(+), 4 deletions(-)
+| 
+* commit 03e86dfbc116eac53e7cd36dd02b97ab0b862847
+| Author: minmaxmarty <aregmkhitaryan@gmail.com>
+| Date:   Tue Jan 7 00:03:48 2025 +0200
+| 
+|     Need to redo remove without const casting
+| 
+|  SortedList.h | 72 +++++++++++++++++++++++++++++++++++++++-------------------
+|  1 file changed, 49 insertions(+), 23 deletions(-)
+| 
+* commit 833055ab75389d1be64d5a924608b07e8e8a052a
+| Author: minmaxmarty <aregmkhitaryan@gmail.com>
+| Date:   Mon Jan 6 22:57:15 2025 +0200
+| 
+|     Finish methods of SortedList up to insert and including
+| 
+|  SortedList.h | 87 +++++++++++++++++++++++++++++++++++++++++++++++++++-------
+|  1 file changed, 77 insertions(+), 10 deletions(-)
+| 
+* commit d27330739a2eef7ab43ab8a7c6076142c34ff6c2
+| Author: minmaxmarty <aregmkhitaryan@gmail.com>
+| Date:   Mon Jan 6 18:33:52 2025 +0200
+| 
+|     commit initial interface
+| 
+|  .gitignore.txt => .gitignore |  0
+|  CMakeLists.txt               |  5 ++-
+|  SortedList.h                 | 76 ++++++++++++++++++++++++++++++++++++++++--
+|  3 files changed, 77 insertions(+), 4 deletions(-)
+| 
+* commit ae52cbeb0eaae4f45f4b486fda6e6e55c6d3c493
+| Author: minmaxmarty <aregmkhitaryan@gmail.com>
+| Date:   Mon Jan 6 16:33:12 2025 +0200
+| 
+|     add gitignore
+| 
+|  .gitignore.txt | 2 ++
+|  CMakeLists.txt | 6 ++++++
+|  2 files changed, 8 insertions(+)
+| 
+* commit a3481f8f37f2fbd59d824d4020f19d434ec6f9a5
+| Author: Ron Raphaeli <102682845+ronraphaeli@users.noreply.github.com>
+| Date:   Sun Dec 22 10:44:54 2024 +0200
+| 
+|     Update Task.cpp
+| 
+|  Task.cpp | 5 ++++-
+|  1 file changed, 4 insertions(+), 1 deletion(-)
+| 
+* commit ef076db7052b54a8918ae43ebe390b6a7a629909
+| Author: Ron Raphaeli <102682845+ronraphaeli@users.noreply.github.com>
+| Date:   Fri Dec 20 17:02:30 2024 +0200
+| 
+|     Update README.md
+| 
+|  README.md | 5 ++---
+|  1 file changed, 2 insertions(+), 3 deletions(-)
+| 
+* commit ef8a3ce100827ef3fead32a4927a3566fe3d0d5d
+| Author: Ron Raphaeli <102682845+ronraphaeli@users.noreply.github.com>
+| Date:   Fri Dec 20 17:01:08 2024 +0200
+| 
+|     Add files via upload
+| 
+|  Person.cpp           |  51 +++++
+|  Person.h             |  79 ++++++++
+|  README.md            |  13 +-
+|  SortedList.h         |  57 ++++++
+|  Task.cpp             |  83 ++++++++
+|  Task.h               | 115 +++++++++++
+|  TaskManager.h        |  75 +++++++
+|  main.cpp             | 531 +++++++++++++++++++++++++++++++++++++++++++++++++
+|  tests/test1.expected |   3 +
+|  tests/test2.expected |   3 +
+|  tests/test3.expected |  30 +++
+|  tests/test4.expected |   3 +
+|  tests/test5.expected |   3 +
+|  tests/test6.expected |  15 ++
+|  14 files changed, 1055 insertions(+), 6 deletions(-)
+| 
+* commit 5bdbf99b46b6f1558a47c5533aefc209c37e23d4
+| Author: Ron Raphaeli <102682845+ronraphaeli@users.noreply.github.com>
+| Date:   Fri Dec 20 16:57:29 2024 +0200
+| 
+|     Update README.md
+| 
+|  README.md | 7 ++++++-
+|  1 file changed, 6 insertions(+), 1 deletion(-)
+| 
+* commit 6c999dc9a584fbf8c3a296c357c16141db7b5abe
+  Author: Ron Raphaeli <102682845+ronraphaeli@users.noreply.github.com>
+  Date:   Fri Dec 20 16:57:09 2024 +0200
+  
+      Initial commit
+  
+   README.md | 1 +
+   1 file changed, 1 insertion(+)
